@@ -35,9 +35,10 @@ static void init_ulp_program(void)
     adc1_config_width(ADC_WIDTH_BIT_12);
     adc1_ulp_enable();
 
-    ulp_wake_up_count = 1000;
+    /* ulp_wake_up_count * ulp wake up period = Main cpu wake up period */
+    ulp_wake_up_count = 1000; // set main CPU wake-up period to 4 seconds
 
-    /* Set ULP wake up period to 20ms */
+    /* Set ULP wake up period to 4ms */
     ulp_set_wakeup_period(0, 4000);
     esp_deep_sleep_disable_rom_logging(); // suppress boot messages
 }
